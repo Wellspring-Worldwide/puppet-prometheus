@@ -91,13 +91,13 @@
 #  The binary release version
 
 class prometheus::mysqld_exporter (
-  Stdlib::Absolutepath $cnf_config_path,
+  Prometheus::Absolutepath $cnf_config_path,
   String $cnf_host,
   String $cnf_password,
-  Stdlib::Port $cnf_port,
+  Prometheus::Port $cnf_port,
   String $cnf_user,
   String $download_extension,
-  Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl] $download_url_base,
+  Variant[Prometheus::HTTPSUrl, Prometheus::HTTPUrl] $download_url_base,
   Array $extra_groups,
   String $group,
   String $package_ensure,
@@ -115,11 +115,11 @@ class prometheus::mysqld_exporter (
   Boolean $manage_user                                               = true,
   String $os                                                         = $prometheus::os,
   String $extra_options                                              = '',
-  Optional[Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl]] $download_url = undef,
+  Optional[Variant[Prometheus::HTTPSUrl, Prometheus::HTTPUrl]] $download_url = undef,
   String $config_mode                                                = $prometheus::config_mode,
-  Optional[Stdlib::Absolutepath] $cnf_socket                         = undef,
+  Optional[Prometheus::Absolutepath] $cnf_socket                         = undef,
   String $arch                                                       = $prometheus::real_arch,
-  Stdlib::Absolutepath $bin_dir                                      = $prometheus::bin_dir,
+  Prometheus::Absolutepath $bin_dir                                      = $prometheus::bin_dir,
 ) inherits prometheus {
 
   #Please provide the download_url for versions < 0.9.0

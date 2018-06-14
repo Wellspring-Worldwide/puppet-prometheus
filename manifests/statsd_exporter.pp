@@ -82,17 +82,17 @@
 
 class prometheus::statsd_exporter (
   String $download_extension,
-  Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl] $download_url_base,
+  Variant[Prometheus::HTTPSUrl, Prometheus::HTTPUrl] $download_url_base,
   Array $extra_groups,
   String $group,
-  Stdlib::Absolutepath $mapping_config_path,
+  Prometheus::Absolutepath $mapping_config_path,
   String $package_ensure,
   String $package_name,
   Array[Hash] $statsd_maps,
   String $user,
   String $version,
   String $arch                                                       = $prometheus::real_arch,
-  Stdlib::Absolutepath $bin_dir                                      = $prometheus::bin_dir,
+  Prometheus::Absolutepath $bin_dir                                      = $prometheus::bin_dir,
   String $config_mode                                                = $prometheus::config_mode,
   Boolean $purge_config_dir                                          = true,
   Boolean $restart_on_change                                         = true,
@@ -105,7 +105,7 @@ class prometheus::statsd_exporter (
   Boolean $manage_service                                            = true,
   Boolean $manage_user                                               = true,
   String $extra_options                                              = '',
-  Optional[Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl]] $download_url = undef,
+  Optional[Variant[Prometheus::HTTPSUrl, Prometheus::HTTPUrl]] $download_url = undef,
 ) inherits prometheus {
 
   $real_download_url    = pick($download_url,"${download_url_base}/download/${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")

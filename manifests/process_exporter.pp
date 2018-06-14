@@ -71,14 +71,14 @@
 
 class prometheus::process_exporter(
   String $download_extension,
-  Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl] $download_url_base,
+  Variant[Prometheus::HTTPSUrl, Prometheus::HTTPUrl] $download_url_base,
   Array $extra_groups,
   String $group,
   String $package_ensure,
   String $package_name,
   String $user,
   String $version,
-  Stdlib::Absolutepath $config_path,
+  Prometheus::Absolutepath $config_path,
   Array $watched_processes                                           = [],
   Boolean $purge_config_dir                                          = true,
   Boolean $restart_on_change                                         = true,
@@ -92,9 +92,9 @@ class prometheus::process_exporter(
   String $os                                                         = $prometheus::os,
   String $extra_options                                              = '',
   String $config_mode                                                = $prometheus::config_mode,
-  Optional[Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl]] $download_url = undef,
+  Optional[Variant[Prometheus::HTTPSUrl, Prometheus::HTTPUrl]] $download_url = undef,
   String $arch                                                       = $prometheus::real_arch,
-  Stdlib::Absolutepath $bin_dir                                      = $prometheus::bin_dir,
+  Prometheus::Absolutepath $bin_dir                                      = $prometheus::bin_dir,
 ) inherits prometheus {
 
   $real_download_url = pick($download_url,"${download_url_base}/download/v${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")
