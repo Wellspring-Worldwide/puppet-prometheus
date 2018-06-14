@@ -55,7 +55,7 @@
 #
 define prometheus::daemon (
   String $version,
-  Variant[Stdlib::HTTPSUrl, Stdlib::HTTPUrl] $real_download_url,
+  Variant[Prometheus::HTTPSUrl, Prometheus::HTTPUrl] $real_download_url,
   $notify_service,
   String $user,
   String $group,
@@ -63,7 +63,7 @@ define prometheus::daemon (
   String $download_extension      = $prometheus::download_extension,
   String $os                      = $prometheus::os,
   String $arch                    = $prometheus::real_arch,
-  Stdlib::Absolutepath $bin_dir   = $prometheus::bin_dir,
+  Prometheus::Absolutepath $bin_dir   = $prometheus::bin_dir,
   Optional[String] $package_name  = undef,
   String $package_ensure          = 'installed',
   Boolean $manage_user            = true,

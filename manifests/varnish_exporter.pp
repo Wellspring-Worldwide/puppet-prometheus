@@ -79,7 +79,7 @@ class prometheus::varnish_exporter(
   String $package_name,
   String $user,
   String $version,
-  Variant[Stdlib::HTTPUrl, Stdlib::HTTPSUrl] $download_url_base,
+  Variant[Prometheus::HTTPUrl, Prometheus::HTTPSUrl] $download_url_base,
   Boolean $purge_config_dir      = true,
   Boolean $restart_on_change     = true,
   Boolean $service_enable        = true,
@@ -93,7 +93,7 @@ class prometheus::varnish_exporter(
   String $extra_options          = '',
   Optional[String] $download_url = undef,
   String $arch                   = $prometheus::real_arch,
-  Stdlib::Absolutepath $bin_dir  = $prometheus::bin_dir,
+  Prometheus::Absolutepath $bin_dir  = $prometheus::bin_dir,
 ) inherits prometheus {
 
   $real_download_url = pick($download_url,"${download_url_base}/download/${version}/${package_name}-${version}.${os}-${arch}.${download_extension}")

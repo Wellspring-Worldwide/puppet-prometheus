@@ -129,10 +129,10 @@
 #  [*version*]
 #  The binary release version
 class prometheus::alertmanager (
-  Stdlib::Absolutepath $config_dir,
-  Stdlib::Absolutepath $config_file,
+  Prometheus::Absolutepath $config_dir,
+  Prometheus::Absolutepath $config_file,
   String $download_extension,
-  Variant[Stdlib::HTTPUrl, Stdlib::HTTPSUrl] $download_url_base,
+  Variant[Prometheus::HTTPUrl, Prometheus::HTTPSUrl] $download_url_base,
   Array $extra_groups,
   Hash $global,
   String $group,
@@ -141,7 +141,7 @@ class prometheus::alertmanager (
   String $package_name,
   Array $receivers,
   Hash $route,
-  Stdlib::Absolutepath $storage_path,
+  Prometheus::Absolutepath $storage_path,
   Array $templates,
   String $user,
   String $version,
@@ -160,7 +160,7 @@ class prometheus::alertmanager (
   Optional[String] $download_url = undef,
   String $config_mode            = $prometheus::config_mode,
   String $arch                   = $prometheus::real_arch,
-  Stdlib::Absolutepath $bin_dir  = $prometheus::bin_dir,
+  Prometheus::Absolutepath $bin_dir  = $prometheus::bin_dir,
 ) inherits prometheus {
 
   if( versioncmp($version, '0.3.0') == -1 ){
