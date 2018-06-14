@@ -1,1 +1,1 @@
-type Stdlib::Absolutepath = Variant[Stdlib::Windowspath, Stdlib::Unixpath]
+type Prometheus::Absolutepath = Variant[Prometheus::Windowspath, Prometheus::Unixpath]

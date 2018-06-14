@@ -1,1 +1,1 @@
-type Stdlib::Unixpath = Pattern[/^\/([^\/\0]+\/*)*$/]
+type Prometheus::Unixpath = Pattern[/^\/([^\/\0]+\/*)*$/]
