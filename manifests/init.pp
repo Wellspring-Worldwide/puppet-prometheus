@@ -136,7 +136,7 @@ class prometheus (
   String $user,
   String $group,
   Array $extra_groups,
-  Variant[Prometheus::Absolutepath, String] $bin_dir = '/usr/local/bin',
+  Variant[Prometheus::Absolutepath, String] $bin_dir,
   Prometheus::Absolutepath $shared_dir,
   String $version,
   String $install_method,
