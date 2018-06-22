@@ -140,7 +140,7 @@ class prometheus (
   Variant[Prometheus::Absolutepath, String] $shared_dir,
   String $version,
   String $install_method,
-  Variant[Prometheus::HTTPUrl, Prometheus::HTTPSUrl] $download_url_base,
+  Variant[Prometheus::HTTPUrl, Prometheus::HTTPSUrl, String] $download_url_base,
   String $download_extension,
   String $package_name,
   String $package_ensure,
