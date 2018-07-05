@@ -347,7 +347,7 @@ class Prometheus::Base
 
   # object types
   newtype :host do
-    setparameters :host_name, :labels, :port, :display_name, :address, :parents,
+    setparameters :name, :host_name, :labels, :port, :display_name, :address, :parents,
       :hostgroups, :check_command, :initial_state, :max_check_attempts,
       :check_interval, :retry_interval, :active_checks_enabled,
       :passive_checks_enabled, :check_period, :obsess_over_host,
