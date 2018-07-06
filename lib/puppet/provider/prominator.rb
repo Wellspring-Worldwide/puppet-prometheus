@@ -1,6 +1,6 @@
 require 'puppet'
 require 'puppet/provider/parsedfile'
-require 'puppet/external/prometheus'
+require_relative '../external/prometheus'
 require 'json'
 
 # The base class for all Prominator providers.
