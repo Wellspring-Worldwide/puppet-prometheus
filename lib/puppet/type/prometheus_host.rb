@@ -1,3 +1,3 @@
-require 'puppet/util/prometheus_maker'
+require 'puppet/external/prometheus_maker'
 
 Puppet::Util::PrometheusMaker.create_prometheus_type :host
