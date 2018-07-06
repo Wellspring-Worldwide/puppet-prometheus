@@ -4,8 +4,8 @@
 
 require 'digest/md5'
 #require 'ldap'
-require 'puppet/external/prometheus/parser.rb'
-require 'puppet/external/prometheus/base.rb'
+require_relative 'prometheus/parser.rb'
+require_relative 'prometheus/base.rb'
 
 module Prometheus
   PROMETHEUSVERSION = '2.3.0'

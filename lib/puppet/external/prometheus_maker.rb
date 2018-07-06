@@ -1,6 +1,6 @@
-require 'puppet/external/prometheus'
-require 'puppet/external/prometheus/base'
-require 'puppet/provider/prominator'
+require_relative 'prometheus'
+require_relative 'prometheus/base'
+require_relative '../provider/prominator'
 
 module PrometheusMaker
   # Create a new prometheus type, using all of the parameters
