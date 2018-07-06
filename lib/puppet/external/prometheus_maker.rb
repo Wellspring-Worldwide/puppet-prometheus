@@ -2,7 +2,7 @@ require 'puppet/external/prometheus'
 require 'puppet/external/prometheus/base'
 require 'puppet/provider/prominator'
 
-module Puppet::Util::PrometheusMaker
+module PrometheusMaker
   # Create a new prometheus type, using all of the parameters
   # from the parser.
   def self.create_prometheus_type(name)
