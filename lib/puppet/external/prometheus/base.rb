@@ -311,9 +311,10 @@ class Prometheus::Base
 
     @parameters.keys.sort.each { |param|
       value = @parameters[param]
-      #if param == ["host_name","port"] then
-      #  next
-      #end
+      if param == ["host_name","port"] then
+        self['name'] = "#{self.host_name}:#{self.port}"
+        next
+      end
 
       #if param == "alias" then
       #  str += %{"labels": { "%s": "%s" },} % [ param, value ]
@@ -331,6 +332,7 @@ class Prometheus::Base
 
     str += "},\n"
 
+    puts str
     str
   end
 
@@ -341,7 +343,7 @@ class Prometheus::Base
 
   # object types
   newtype :host do
-    setparameters :host_name, :labels, :port
+    setparameters :name, :host_name, :labels, :port
   end
 
 end
