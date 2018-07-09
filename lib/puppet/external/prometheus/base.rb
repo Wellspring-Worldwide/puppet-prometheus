@@ -300,7 +300,7 @@ class Prometheus::Base
     @parameters.keys.sort.each { |param|
       value = @parameters[param]
 
-      if param == ["host_name", "port"]
+      if param in ["host_name", "port"]
         next
       end
       ret.merge!( "#{param}" => value) 
