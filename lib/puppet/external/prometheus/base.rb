@@ -298,14 +298,12 @@ class Prometheus::Base
     ret = { :targets => [ "#{self.host_name}:#{self.port}" ]}
     @parameters.keys.sort.each { |param|
       value = @parameters[param]
-      puts "Key: #{param} - Value: #{value}"
-      if ["host","port"].include?(param)
+      #puts "Key: #{param} - Value: #{value}"
+      if ["host_name","port"].include?(param)
         next
       end
       ret.merge!( "#{param}" => value) 
     }
-    exportername = "prometheus_#{self.name}_on_#{self.host_name}_port_#{self.port}"
-    ret.merge!( "exporter_name" => exportername)
     ret
   end
 
