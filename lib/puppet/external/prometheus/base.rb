@@ -296,7 +296,6 @@ class Prometheus::Base
 
   def to_hash
     ret = { :targets => [ "#{self.host_name}:#{self.port}" ]}
-    endpoint = "#{self.host_name}"
     @parameters.keys.sort.each { |param|
       value = @parameters[param]
       #puts "Key: #{param} - Value: #{value}"
@@ -305,7 +304,6 @@ class Prometheus::Base
       end
       ret.merge!( "#{param}" => value) 
     }
-    puts ret
     ret
   end
 
