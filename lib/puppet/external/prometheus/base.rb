@@ -344,7 +344,7 @@ class Prometheus::Base
 
   # object types
   newtype :host do
-    setparameters :name, :host_name, :labels, :port
+    setparameters :host_name, :labels, :port
   end
 
 end
