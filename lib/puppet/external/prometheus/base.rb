@@ -320,7 +320,7 @@ class Prometheus::Base
 
   # object types
   newtype :host do
-    setparameters :exporter_name, :host, :labels, :port
+    setparameters :exporter_name, :host_name, :labels, :port
     setnamevar :exporter_name
   end
 
