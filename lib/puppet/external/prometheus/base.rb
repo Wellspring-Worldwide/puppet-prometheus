@@ -298,7 +298,7 @@ class Prometheus::Base
     ret = { :targets => [ "#{self.host}:#{self.port}" ]}
     @parameters.keys.sort.each { |param|
       value = @parameters[param]
-      #puts "Key: #{param} - Value: #{value}"
+      puts "Key: #{param} - Value: #{value}"
       if ["host","port"].include?(param)
         next
       end
