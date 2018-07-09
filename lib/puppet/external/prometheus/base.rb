@@ -300,13 +300,11 @@ class Prometheus::Base
     @parameters.keys.sort.each { |param|
       value = @parameters[param]
 
-      if param == "host_name"
+      if param == ["host_name", "port"]
         next
       else
         ret.merge!( "#{param}" => value) 
       end
-
-      #ret.merge!( "#{param}" => value)
     }
 
     ret
@@ -350,7 +348,7 @@ class Prometheus::Base
 
   # object types
   newtype :host do
-    setparameters :host_name, :labels, :port
+    setparameters :exporter_name, :host_name, :labels, :port
   end
 
 end
