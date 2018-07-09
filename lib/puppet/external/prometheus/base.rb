@@ -306,7 +306,6 @@ class Prometheus::Base
     }
     exportername = "prometheus_#{self.name}_on_#{self.host}_port_#{self.port}"
     ret.merge!( "exporter_name" => exportername)
-    puts ret
     ret
   end
 
@@ -321,7 +320,8 @@ class Prometheus::Base
 
   # object types
   newtype :host do
-    setparameters :exporter_name, :host, :labels, :port
+    setparameters :title, :host, :labels, :port
+    setnamevar :title
   end
 
 end
