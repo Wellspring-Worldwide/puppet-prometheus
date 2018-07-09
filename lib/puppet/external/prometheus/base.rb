@@ -304,7 +304,8 @@ class Prometheus::Base
       end
       ret.merge!( "#{param}" => value) 
     }
-    ret.merge!( "exporter_name" => "prometheus_#{self.name}_on_#{self.host}_port_#{self.port}")
+    exportername = "prometheus_#{self.name}_on_#{self.host}_port_#{self.port}"
+    ret.merge!( "exporter_name" => exportername)
     puts ret
     ret
   end
