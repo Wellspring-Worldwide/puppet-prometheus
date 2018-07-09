@@ -295,11 +295,11 @@ class Prometheus::Base
   end
 
   def to_hash
-    ret = { :targets => [ "#{self.host_name}:#{self.port}" ]}
+    ret = { :targets => [ "#{self.host}:#{self.port}" ]}
     @parameters.keys.sort.each { |param|
       value = @parameters[param]
       #puts "Key: #{param} - Value: #{value}"
-      if ["host_name","port"].include?(param)
+      if ["host","port"].include?(param)
         next
       end
       ret.merge!( "#{param}" => value) 
@@ -318,7 +318,7 @@ class Prometheus::Base
 
   # object types
   newtype :host do
-    setparameters :exporter_name, :host_name, :labels, :port
+    setparameters :exporter_name, :host, :labels, :port
   end
 
 end
