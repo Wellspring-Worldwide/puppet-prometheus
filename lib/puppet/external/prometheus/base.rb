@@ -302,11 +302,10 @@ class Prometheus::Base
 
       if param == ["host_name", "port"]
         next
-      else
-        ret.merge!( "#{param}" => value) 
       end
+      ret.merge!( "#{param}" => value) 
     }
-
+    puts ret
     ret
   end
 
