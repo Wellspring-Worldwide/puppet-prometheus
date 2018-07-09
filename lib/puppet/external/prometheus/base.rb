@@ -296,11 +296,11 @@ class Prometheus::Base
 
   def to_hash
     ret = { :targets => [ "#{self.host_name}:#{self.port}" ]}
-
+    endpoint = "#{self.host_name}"
     @parameters.keys.sort.each { |param|
       value = @parameters[param]
-
-      if param in ["host_name", "port"]
+      #puts "Key: #{param} - Value: #{value}"
+      if ["host_name","port"].include?(param)
         next
       end
       ret.merge!( "#{param}" => value) 
@@ -310,33 +310,6 @@ class Prometheus::Base
   end
 
   def to_s
-    #str = "{ \"targets\": [\"#{self.host_name}:#{self.port}\"],"
-
-    #@parameters.keys.sort.each { |param|
-    #  value = @parameters[param]
-    #  #self['name'] = "#{self.host_name}:#{self.port}"
-    #  #if param == ["host_name","port"] then
-    #  #  self['name'] = "#{self.host_name}:#{self.port}"
-    #  #  next
-    #  #end
-
-    #  #if param == "alias" then
-    #  #  str += %{"labels": { "%s": "%s" },} % [ param, value ]
-    #  #  next
-    #  #end
-
-    #  str += %{"%s": "%s"} % [ param,
-    #    if value.is_a? Array
-    #      value.join(",").sub(';', '\;')
-    #    else
-    #      value.to_s.sub(';', '\;')
-    #    end
-    #    ]
-    #}
-
-    #str += "},\n"
-
-    #str
     self.to_hash
   end
 
