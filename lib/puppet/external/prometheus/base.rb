@@ -307,18 +307,18 @@ class Prometheus::Base
   end
 
   def to_s
-    str = "{ \"targets\": [\"#{self.name}:#{self.port}\"],"
+    str = "{ \"targets\": [\"#{self.host_name}:#{self.port}\"],"
 
     @parameters.keys.sort.each { |param|
       value = @parameters[param]
-      if param == ["host_name","port"] then
-        next
-      end
+      #if param == ["host_name","port"] then
+      #  next
+      #end
 
-      if param == "alias" then
-        str += %{"labels": { "%s": "%s" },} % [ param, value ]
-        next
-      end
+      #if param == "alias" then
+      #  str += %{"labels": { "%s": "%s" },} % [ param, value ]
+      #  next
+      #end
 
       str += %{"%s": "%s"} % [ param,
         if value.is_a? Array
