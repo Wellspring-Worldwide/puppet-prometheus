@@ -1,6 +1,6 @@
-require_relative 'prometheus'
-require_relative 'prometheus/base'
-require_relative '../provider/prominator'
+#require_relative 'prometheus'
+#require_relative 'prometheus/base'
+#require_relative '../provider/prominator'
 
 module Puppet
   Type.newtype(:prometheus_host) do
@@ -33,13 +33,13 @@ module Puppet
     newproperty(:target) do
       desc "The file in which to source the exporter information. Only used by
         the `parsed` provider."
-    
-      defaultto { if @resource.class.defaultprovider.ancestors.include?(Puppet::Provider::ParsedFile)
-        @resource.class.defaultprovider.default_target
-        else 
-          nil
-        end
-      }
+      
+      defaultto "/etc/prometheus/prometheus_host.json"
+    end
+
+    def generate
+      props = { :name => "/etc/prometheus/prometheus_host.json", :owner => 'root', :group => 'root', :mode => 0644 }
+      Puppet::Type.type(:file).new(props)
     end
   end
 end
