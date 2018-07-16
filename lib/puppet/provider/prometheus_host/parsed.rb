@@ -1,6 +1,6 @@
 require 'puppet/provider/parsedfile'
 
-Puppet::Type.type(:prometheus_houst).provide(
+Puppet::Type.type(:prometheus_host).provide(
   :parsed,
   :parent => Puppet::Provider::ParsedFile,
   :filetype => :flat
