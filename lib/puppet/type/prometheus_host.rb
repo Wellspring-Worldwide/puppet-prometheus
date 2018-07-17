@@ -38,7 +38,7 @@ module Puppet
     end
 
     def generate
-      props = { :name => "/etc/prometheus/prometheus_host.json", :owner => 'root', :group => 'root', :mode => 0644 }
+      props = { :name => "/etc/prometheus/prometheus_host.json", :owner => 'root', :group => 'root', :mode => '0644' }
       Puppet::Type.type(:file).new(props)
     end
   end

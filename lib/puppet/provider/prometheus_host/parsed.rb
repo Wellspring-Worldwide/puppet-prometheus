@@ -4,7 +4,8 @@ require 'json'
 Puppet::Type.type(:prometheus_host).provide(
   :parsed,
   :parent => Puppet::Provider::ParsedFile,
-  :filetype => :flat
+  :filetype => :flat,
+  :default_target => "/etc/prometheus/prometheus_host.json"
 ) do
   desc "Parse and generate JSON files for prometheus based on prometheus_host exporters."
 
@@ -16,6 +17,8 @@ Puppet::Type.type(:prometheus_host).provide(
     def to_line(record)
       rhash = {}
       rhash.merge!(targets: "#{record[:host_name]}:#{record[:port]}")
+      rhash.delete(:host_name)
+      rhash.delete(:port)
 
       if record[:labels]
         rhash.merge!(labels: record[:labels])
@@ -23,6 +26,7 @@ Puppet::Type.type(:prometheus_host).provide(
 
       rhash.to_json
     end
+
   end
 
   def self.default_mode
@@ -33,15 +37,32 @@ Puppet::Type.type(:prometheus_host).provide(
     ",\n\t"
   end
 
+  def self.parse_line(line)
+    rtn = {}
+
+    clean_line = line.tr("[]\n\t","")
+    JSON.parse(clean_line).each do |k,v|
+      rtn[k] = v
+    end
+
+    rtn
+  end
+
+  #def self.parse_line(line)
+  #  fmt_line = line.tr("[]", "")
+  #  rtn = JSON.parse(fmt_line)
+  #  rtn[:host_name] = rtn['targets'].split(':')[0]
+  #  rtn[:port] = rtn['targets'].split(':')[1]
+  #  rtn.delete('targets')
+  #  puts rtn.inspect
+  #  rtn
+  #end
+
   def self.to_file(records)
     text = records.collect { |record| self.to_line(record) }.join(self.line_separator)
 
-    text += line_separator if self.trailing_separator
+    #text += line_separator if self.trailing_separator
 
-    "[\n\t#{text}\n]"
-  end
-
-  def self.default_target
-    "/etc/prometheus/prometheus_host.json"
+    "[\n\t#{text}\n]\n"
   end
 end
