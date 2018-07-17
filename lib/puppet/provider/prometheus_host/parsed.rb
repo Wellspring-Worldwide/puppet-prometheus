@@ -1,6 +1,6 @@
 require 'puppet/provider/parsedfile'
 require 'json'
-require 'pry'
+#require 'pry'
 
 Puppet::Type.type(:prometheus_host).provide(
   :parsed,
@@ -10,14 +10,16 @@ Puppet::Type.type(:prometheus_host).provide(
 ) do
   desc "Parse and generate JSON files for prometheus based on prometheus_host exporters."
 
+  attr_reader :name
+
   record_line "parsed",
-    :fields     => %w{host_name port},
+    :fields     => %w{hostname port},
     :optional   => %w{labels},
     :block_eval => :instance do
 
     def to_line(record)
       rhash = {}
-      rhash[:targets] = "#{record[:host_name]}:#{record[:port]}"
+      rhash[:targets] = "#{record[:hostname]}:#{record[:port]}"
 
       if record[:labels]
         rhash.merge!(labels: record[:labels])
@@ -50,7 +52,7 @@ Puppet::Type.type(:prometheus_host).provide(
 
     target_breakout = line_hash["targets"].split(':')
 
-    line_hash["host_name"] = target_breakout[0]
+    line_hash["hostname"] = target_breakout[0]
     line_hash["port"] = target_breakout[1]
     line_hash.delete("targets")
 

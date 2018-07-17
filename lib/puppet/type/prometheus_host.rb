@@ -1,24 +1,17 @@
-#require_relative 'prometheus'
-#require_relative 'prometheus/base'
-#require_relative '../provider/prominator'
+require 'facter'
 
 module Puppet
   Type.newtype(:prometheus_host) do
     @doc = "Manage prometheus_host resources"
-  
     ensurable
 
-    newparam(:name) do
-      isnamevar
-      desc "Exporter name"
-
-      validate do |value|
-        raise Puppet::Error,_("Resource name cannot include whitespaces") if value =~ /\s/
-      end 
+    newparam(:name, :namevar => true) do
+      desc 'Puppet catalog name of the prometheus exporter'
     end
 
-    newproperty(:host_name) do
+    newproperty(:hostname) do
       desc "Host name of the exporter"
+      defaultto Facter.value(:fqdn)
     end
 
     newproperty(:labels) do
@@ -28,12 +21,12 @@ module Puppet
     newproperty(:port) do
       desc "Port for the exporter to connect to"
     end
-  
+
     # File path to place the resource information in
     newproperty(:target) do
       desc "The file in which to source the exporter information. Only used by
         the `parsed` provider."
-      
+
       defaultto "/etc/prometheus/prometheus_host.json"
     end
 
