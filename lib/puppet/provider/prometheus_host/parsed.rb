@@ -19,7 +19,7 @@ Puppet::Type.type(:prometheus_host).provide(
 
     def to_line(record)
       rhash = {}
-      rhash[:targets] = "#{record[:host_name]}:#{record[:port]}"
+      rhash[:targets] = ["#{record[:host_name]}:#{record[:port]}"]
 
       if record[:labels]
         rhash.merge!(labels: record[:labels])
