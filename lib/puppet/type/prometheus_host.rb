@@ -9,7 +9,7 @@ module Puppet
       desc 'Puppet catalog name of the prometheus exporter'
     end
 
-    newproperty(:hostname) do
+    newproperty(:host_name) do
       desc "Host name of the exporter"
       defaultto Facter.value(:fqdn)
     end
