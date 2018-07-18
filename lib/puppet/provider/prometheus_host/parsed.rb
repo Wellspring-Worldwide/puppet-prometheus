@@ -13,13 +13,13 @@ Puppet::Type.type(:prometheus_host).provide(
   attr_reader :name
 
   record_line "parsed",
-    :fields     => %w{hostname port},
+    :fields     => %w{host_name port},
     :optional   => %w{labels},
     :block_eval => :instance do
 
     def to_line(record)
       rhash = {}
-      rhash[:targets] = "#{record[:hostname]}:#{record[:port]}"
+      rhash[:targets] = ["#{record[:host_name]}:#{record[:port]}"]
 
       if record[:labels]
         rhash.merge!(labels: record[:labels])
@@ -52,7 +52,7 @@ Puppet::Type.type(:prometheus_host).provide(
 
     target_breakout = line_hash["targets"].split(':')
 
-    line_hash["hostname"] = target_breakout[0]
+    line_hash["host_name"] = target_breakout[0]
     line_hash["port"] = target_breakout[1]
     line_hash.delete("targets")
 
